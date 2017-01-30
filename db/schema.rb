@@ -1,4 +1,3 @@
-# encoding: UTF-8
 # This file is auto-generated from the current state of the database. Instead
 # of editing this file, please use the migrations feature of Active Record to
 # incrementally modify your database, and then regenerate this schema definition.
@@ -11,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160514004755) do
+ActiveRecord::Schema.define(version: 20170130200252) do
 
   create_table "assignments", force: :cascade do |t|
     t.string   "name"
@@ -21,6 +20,16 @@ ActiveRecord::Schema.define(version: 20160514004755) do
     t.integer  "course_id"
     t.datetime "created_at",  null: false
     t.datetime "updated_at",  null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "topic_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_comments_on_topic_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
   end
 
   create_table "courses", force: :cascade do |t|
@@ -35,48 +44,42 @@ ActiveRecord::Schema.define(version: 20160514004755) do
     t.integer  "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_enrollments_on_course_id"
+    t.index ["student_id"], name: "index_enrollments_on_student_id"
   end
 
-  add_index "enrollments", ["course_id"], name: "index_enrollments_on_course_id"
-  add_index "enrollments", ["student_id"], name: "index_enrollments_on_student_id"
+  create_table "forums", force: :cascade do |t|
+    t.integer  "course_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["course_id"], name: "index_forums_on_course_id"
+  end
 
-  create_table "lecturers", force: :cascade do |t|
-    t.string   "provider",               default: "email", null: false
-    t.string   "uid",                    default: "",      null: false
-    t.string   "encrypted_password",     default: "",      null: false
-    t.string   "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
-    t.integer  "sign_in_count",          default: 0,       null: false
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
-    t.string   "current_sign_in_ip"
-    t.string   "last_sign_in_ip"
-    t.string   "confirmation_token"
-    t.datetime "confirmed_at"
-    t.datetime "confirmation_sent_at"
-    t.string   "unconfirmed_email"
+  create_table "posts", force: :cascade do |t|
+    t.string   "title"
+    t.integer  "topic_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["topic_id"], name: "index_posts_on_topic_id"
+  end
+
+  create_table "replies", force: :cascade do |t|
+    t.text     "text"
+    t.integer  "comment_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comment_id"], name: "index_replies_on_comment_id"
+    t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "topics", force: :cascade do |t|
     t.string   "name"
-    t.string   "nickname"
-    t.string   "image"
-    t.string   "email"
-    t.text     "tokens"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "authentication_token"
-  end
-
-  add_index "lecturers", ["authentication_token"], name: "index_users_on_authentication_token"
-  add_index "lecturers", ["email"], name: "index_lecturers_on_email"
-  add_index "lecturers", ["reset_password_token"], name: "index_lecturers_on_reset_password_token", unique: true
-  add_index "lecturers", ["uid", "provider"], name: "index_lecturers_on_uid_and_provider", unique: true
-
-  create_table "students", force: :cascade do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.integer  "identification_number"
-    t.datetime "created_at",            null: false
-    t.datetime "updated_at",            null: false
+    t.text     "description"
+    t.integer  "forum_id"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.index ["forum_id"], name: "index_topics_on_forum_id"
   end
 
 end

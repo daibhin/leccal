@@ -3,9 +3,9 @@
 #
 # Examples:
 
-Lecturer.create(name: 'John Breslin', email: 'johnbreslin@nuigalway.ie')
-Lecturer.create(name: 'Martin Glavin', email: 'martinglavin@nuigalway.ie')
-Lecturer.create(name: 'Eddie Jones', email: 'edwardjones@nuigalway.ie')
+# Lecturer.create(name: 'John Breslin', email: 'johnbreslin@nuigalway.ie')
+# Lecturer.create(name: 'Martin Glavin', email: 'martinglavin@nuigalway.ie')
+# Lecturer.create(name: 'Eddie Jones', email: 'edwardjones@nuigalway.ie')
 
 programming_course = Course.create(name: 'Programming I', code: 'CS101')
 Course.create(name: 'Programming II', code: 'CS201')
