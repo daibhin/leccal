@@ -6,6 +6,6 @@ class Api::V1::CoursesController < ApplicationController
 
   def show
     @course = Course.find(params[:id])
-    render json: @course, include: ['assignments', 'forum']
+    render json: @course, include: ['assignments', 'forum.topics.posts']
   end
 end
