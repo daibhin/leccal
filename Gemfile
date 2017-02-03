@@ -19,6 +19,7 @@ gem 'devise_token_auth'
 gem 'omniauth'
 
 gem 'active_model_serializers'
+gem 'will_paginate', '~> 3.1.0'
 
 # Commands
 gem 'mutations'

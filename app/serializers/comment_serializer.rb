@@ -1,5 +1,5 @@
-class PostSerializer < ActiveModel::Serializer
+class CommentSerializer < ActiveModel::Serializer
   attributes :id, :text
 
-  belongs_to :topic
+  belongs_to :post
 end
