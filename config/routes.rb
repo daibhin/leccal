@@ -5,11 +5,7 @@ Rails.application.routes.draw do
 
       resources :courses, :assignments, :topics
 
-      resources :posts do
-        collection do
-          get :comments
-        end
-      end
+      resources :posts, :comments
 
     end
   end
