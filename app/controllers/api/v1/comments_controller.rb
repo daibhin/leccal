@@ -6,7 +6,7 @@ class Api::V1::CommentsController < ApplicationController
 
   def index
     post = Post.find(params[:post_id])
-    @comments = post.comments.paginate(:page => params[:page], :per_page => 15)
+    @comments = post.comments.paginate(:page => params[:page], :per_page => 15).order('created_at DESC').reverse
     render json: @comments
   end
 
