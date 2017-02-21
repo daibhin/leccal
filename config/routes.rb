@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :users
       resources :courses, :assignments, :topics
       resources :posts, :comments
+      resources :projects
     end
   end
 end

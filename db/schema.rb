@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170215202803) do
+ActiveRecord::Schema.define(version: 20170221172147) do
 
   create_table "assignments", force: :cascade do |t|
     t.string   "name"
@@ -62,6 +62,21 @@ ActiveRecord::Schema.define(version: 20170215202803) do
     t.index ["topic_id"], name: "index_posts_on_topic_id"
   end
 
+  create_table "project_memberships", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "project_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["project_id"], name: "index_project_memberships_on_project_id"
+    t.index ["user_id"], name: "index_project_memberships_on_user_id"
+  end
+
+  create_table "projects", force: :cascade do |t|
+    t.string   "name"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "replies", force: :cascade do |t|
     t.text     "text"
     t.integer  "comment_id"
@@ -70,6 +85,15 @@ ActiveRecord::Schema.define(version: 20170215202803) do
     t.datetime "updated_at", null: false
     t.index ["comment_id"], name: "index_replies_on_comment_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "todos", force: :cascade do |t|
+    t.string   "name"
+    t.boolean  "completed",  default: false
+    t.integer  "project_id"
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
+    t.index ["project_id"], name: "index_todos_on_project_id"
   end
 
   create_table "topics", force: :cascade do |t|

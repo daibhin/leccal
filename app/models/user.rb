@@ -5,6 +5,11 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+
+
+  has_many :projects, through: :project_memberships
+  has_many :project_memberships
+
   private
   def set_auth_token
     if self.authentication_token.blank?
