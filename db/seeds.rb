@@ -21,3 +21,10 @@ topic = Topic.create(name: "Assignment 1 - Discussion", description: "Ask questi
 post = Post.create(title: "this.attr or attr.this", topic_id: topic.id)
 Comment.create(text: "How do I do this?", post_id: post.id, user_id: user.id)
 Comment.create(text: "I'm not just going to give you the answer", post_id: post.id, user_id: user.id)
+
+# Projects
+project = Project.create(name: "My first project")
+membership = ProjectMembership.create(user_id: user.id, project_id: project.id)
+Todo.create(name: "Item 1", completed: false, project_id: project.id)
+Todo.create(name: "Item 2", completed: false, project_id: project.id)
+Todo.create(name: "Item 3", completed: false, project_id: project.id)
