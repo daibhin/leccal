@@ -1,4 +1,5 @@
 class Api::V1::AssignmentsController < ApplicationController
+  before_action :authenticate_user_from_token!
 
   def show
     render json: Assignment.find(params[:id])

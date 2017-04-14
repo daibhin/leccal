@@ -11,7 +11,7 @@ module Assignments
     end
 
     def execute
-      binding.pry
+      assignment.submissions.create!(submitter_id: user_id)
     end
 
     def assignment
