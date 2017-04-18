@@ -2,7 +2,8 @@ class Api::V1::AssignmentsController < ApplicationController
   before_action :authenticate_user_from_token!
 
   def show
-    render json: Assignment.find(params[:id])
+    @assignment = Assignment.find(params[:id])
+    render json: @assignment, include: ['submissions']
   end
 
   def create
@@ -10,13 +11,16 @@ class Api::V1::AssignmentsController < ApplicationController
   end
 
   def submit
-    permitted = params.permit(:assignment_id, :user_id)
-    render json: ::Assignments::Submit.run!(permitted.to_h)
+    render json: ::Assignments::Submit.run!(submit_params.to_h)
   end
 
   private
 
   def assignment_params
     params.require(:assignment).permit(:name, :description, :start_date, :due_date, :course_id)
+  end
+
+  def submit_params
+    params.permit(:assignment_id, :user_id, member_ids: [])
   end
 end

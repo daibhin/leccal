@@ -6,9 +6,11 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable
 
 
-
-  has_many :projects, through: :project_memberships
   has_many :project_memberships
+  has_many :projects, through: :project_memberships
+
+  has_many :submission_memberships
+  has_many :submissions, through: :submission_memberships
 
   private
   def set_auth_token
