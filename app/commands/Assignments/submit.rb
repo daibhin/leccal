@@ -3,7 +3,7 @@ module Assignments
 
     required do
       integer :assignment_id
-      integer :user_id
+      integer :submitter_id
     end
 
     optional do
@@ -16,8 +16,9 @@ module Assignments
 
     def execute
       ActiveRecord::Base.transaction do
-        submission = assignment.submissions.create!(submitter_id: user_id)
+        submission = assignment.submissions.create!(submitter_id: submitter_id)
         submission.users << group_members
+        submission
       end
     end
 

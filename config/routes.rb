@@ -7,11 +7,7 @@ Rails.application.routes.draw do
       resources :posts, :comments
       resources :projects
 
-      resources :assignments do
-        collection do
-          post 'submit'
-        end
-      end
+      resources :assignments, :submissions
     end
   end
 end
