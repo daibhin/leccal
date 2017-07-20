@@ -2,7 +2,6 @@ class Api::V1::SubmissionsController < ApplicationController
   before_action :authenticate_user_from_token!
 
   def create
-    binding.pry
     render json: ::Assignments::Submit.run!(submit_params.to_h)
   end
 

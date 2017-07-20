@@ -14,6 +14,10 @@ gem 'jbuilder', '~> 2.0'
 # bundle exec rake doc:rails generates the API under doc/api.
 gem 'sdoc', '~> 0.4.0', group: :doc
 
+gem 'jquery-rails', "~> 4.3.1"
+
+gem 'turbolinks', '~> 5.0.0'
+
 # user authentication
 gem 'devise_token_auth'
 gem 'omniauth'
